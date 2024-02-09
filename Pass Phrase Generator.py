@@ -12,31 +12,43 @@
 # Import pyperclip for copying pass phrase to clipboard automatically (https://pypi.org/project/pyperclip/)
 import random
 import pyperclip
+import argparse
 
-# Define list, define random number to use in print statement starting at 0 ending at list length -1.
-kleur = ["Rood", "Wit", "Blauw", "Groen", "Geel", "Paars"]
-number = random.randint(0, len(kleur) -1 )
+# Create an argument parser
+parser = argparse.ArgumentParser(description='Kies welk wachtwoord je wil?')
 
-dier = ["Aap", "Capybara", "Koe", "Giraffe"]
-number2 = random.randint(0,3)
+# Add the arguments
+parser.add_argument('-s', '--simple', action='store_true', help='Genereer een simpel wachtwoord' )
 
-number3 = random.randint(0,99)
-str_number = str(number3)
+# Parse the command-line arguments
+args = parser.parse_args()
 
-# Create a list with the variables
-variables = [kleur[number], dier[number2], str(str_number)]
+if args.simple == True:
+    # Define list, define random number to use in print statement starting at 0 ending at list length -1.
+    kleur = ["Rood", "Wit", "Blauw", "Groen", "Geel", "Paars"]
+    number = random.randint(0, len(kleur) -1 )
 
-# Shuffle the order of variables
-random.shuffle(variables)
+    dier = ["Aap", "Capybara", "Koe", "Giraffe"]
+    number2 = random.randint(0,3)
 
-# Concatenate the variables and print the result
-result = "".join(variables)
-print("Copied to clipboard:", result)
+    number3 = random.randint(0,99)
+    str_number = str(number3)
 
-pyperclip.copy(result)
+    # Create a list with the variables
+    variables = [kleur[number], dier[number2], str(str_number)]
+
+    # Shuffle the order of variables
+    random.shuffle(variables)
+
+    # Concatenate the variables and print the result
+    result = "".join(variables)
+    print("Copied to clipboard:", result)
+
+    pyperclip.copy(result)
 
 #print((kleur[number])+(dier[number2])+str_number)
 #pyperclip.copy((kleur[number])+(dier[number2])+str_number)
+#test
 
 
 
